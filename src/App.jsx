@@ -341,15 +341,32 @@ function App() {
       return
     }
 
-    // Check username contains MANDY (case insensitive)
-    if (!trimmedEmail.toUpperCase().includes('MANDY')) {
+    // Check valid usernames
+    const validUsernames = [
+      'mandy',
+      'kih.mandy',
+      'mandahoyy',
+      'mendidikbud'
+    ]
+    
+    const isValidUsername = validUsernames.some(user => {
+      if (user === 'mandy') {
+        // mandy is case insensitive
+        return trimmedEmail.toLowerCase() === user
+      } else {
+        // Others must be exact match (lowercase)
+        return trimmedEmail === user
+      }
+    })
+
+    if (!isValidUsername) {
       setLoginError('Hayo ini siapa 👀')
       return
     }
 
     // Check password is exactly MANDY1901
     if (trimmedPassword !== 'MANDY1901') {
-      setLoginError('Password salah 🔒')
+      setLoginError('Wrong Password 🔒')
       return
     }
 
