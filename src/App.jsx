@@ -983,10 +983,10 @@ function App() {
               
               
               <div className="space-y-6 text-[#b3b3b3] leading-relaxed text-lg">
-                <p className="text-white font-medium text-xl">Dear Mandy,</p>
+                <p className="text-white font-medium text-xl">dear mandy,</p>
                 
                 <p>
-                  happy birthday princess! moga tahun ini bisa jadi tahun yang lebih baik bagi u dari tahun" sebelumnya yaa. moga u selalu sehat, makin cantik, makin sukses, makin bisa banggain ortu, and always jadi mandy yang happy yaa.
+                  happy birthday yaaa princess! moga tahun ini bisa jadi tahun yang lebih baik bagi u dari tahun" sebelumnya yaa. moga u selalu sehat, makin cantik, makin sukses, makin bisa banggain ortu, and always jadi mandy yang happy yaa.
                 </p>
                 
                 <p>
@@ -994,11 +994,11 @@ function App() {
                 </p>
                 
                 <p>
-                  tahun ini kurangin sedih"nya ya? hehe. i know hidup emang ga selalu mudah & sesuai ama keinginan kita. but jangan lupa kalo ada orang" yang sayang ama care ama u. jadi jangan lupa cerita ke mereka juga ya?
+                  i wanna say sorry kalo selama kita kenal i pernah bikin u sedih, kesel, marah ato semacamnya. asal u tau if i never mean to hurt u. i always try my best to be a better person for u, and i hope u can forgive me for my mistakes. thank u for being so patient and understanding sama i.
                 </p>
-                
+
                 <p>
-                  once again, happy birthday mandy! fly higher, i'll be your goddamn rocket 🤘
+                  once again, happy birthday mandy! sisa messagenya mugnkin u udah liat di wa wkwk. fly higher, i'll be your goddamn rocket 🤘
                 </p>
                 
                 <p className="text-white font-medium text-xl pt-4">
