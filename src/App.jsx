@@ -622,7 +622,7 @@ function App() {
               value={email}
               onChange={handleEmailChange}
               className="w-full h-12 px-4 bg-[#121212] border border-[#727272] rounded-[4px] text-white placeholder-[#a7a7a7] focus:outline-none focus:border-white transition-colors"
-              placeholder="MANDY, KIH.MANDY, etc"
+              placeholder="Enter your username"
             />
           </div>
           <div className="mb-2">
