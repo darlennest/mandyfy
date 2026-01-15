@@ -10,5 +10,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/mandyfy",
+  base: process.env.NODE_ENV === 'production' ? "/mandyfy" : "/",
 })

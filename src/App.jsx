@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Home, Search, Library, Play, Pause, SkipBack, SkipForward, Volume, Volume1, Volume2, VolumeX, Shuffle, Repeat, ChevronLeft, ChevronRight, X, Clock, MoreHorizontal } from 'lucide-react'
 
 function App() {
-  const audioRef = useRef(new Audio())
+  const audioRef = useRef(null)
   const [currentScreen, setCurrentScreen] = useState('login')
   const [currentView, setCurrentView] = useState('home')
   const [email, setEmail] = useState('')
@@ -25,6 +25,13 @@ function App() {
     cover: 'https://i.scdn.co/image/ab67616d0000b2739db0f71d794d0e158b481409',
     progress: 15
   })
+
+  // Initialize audio element on mount
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio()
+    }
+  }, [])
 
   // Helper function to format seconds to MM:SS
   const formatTime = (seconds) => {
@@ -143,7 +150,7 @@ function App() {
     const song = loveSongs[randomIndex]
     const audio = audioRef.current
 
-    if (!song?.src) return
+    if (!audio || !song?.src) return
 
     // Update player state
     setCurrentTrack(randomIndex)
@@ -213,7 +220,7 @@ function App() {
     const audio = audioRef.current
     const song = loveSongs[currentTrack]
 
-    if (!song?.src) return
+    if (!audio || !song?.src) return
 
     // Update currentSong state when track changes
     setCurrentSong({
@@ -285,6 +292,7 @@ function App() {
   // Effect: play/pause control separated so toggling play doesn't reload the source
   useEffect(() => {
     const audio = audioRef.current
+    if (!audio) return
     if (isPlaying) {
       audio.play().catch(() => {})
     } else {
@@ -293,6 +301,7 @@ function App() {
   }, [isPlaying])
 
   useEffect(() => {
+    if (!audioRef.current) return
     audioRef.current.volume = volume
     if (volume > 0 && isMuted) {
       setIsMuted(false)
@@ -302,6 +311,7 @@ function App() {
 
   // Keep audio muted state in sync with audio element
   useEffect(() => {
+    if (!audioRef.current) return
     audioRef.current.muted = isMuted
   }, [isMuted])
 
@@ -333,7 +343,7 @@ function App() {
     const song = loveSongs[randomIndex]
     const audio = audioRef.current
 
-    if (!song?.src) return
+    if (!audio || !song?.src) return
 
     try {
       audio.src = song.src
@@ -395,6 +405,8 @@ function App() {
     if (currentView !== 'wrapped' && savedWrappedStateRef.current) {
       const prev = savedWrappedStateRef.current
       const audio = audioRef.current
+
+      if (!audio) return
 
       // Restore track and song metadata
       const prevTrack = prev.track
@@ -468,6 +480,7 @@ function App() {
 
   const togglePlay = async () => {
     try {
+      if (!audioRef.current) return
       if (isPlaying) {
         audioRef.current.pause()
       } else {
