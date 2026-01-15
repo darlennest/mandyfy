@@ -160,12 +160,22 @@ function App() {
       album: song.album,
       cover: song.cover
     })
-    setCurrentTime(0)
     setIsPlaying(true)
 
     // Start playback immediately so it counts as user-initiated
     audio.src = song.src
     audio.load()
+    
+    const onLoadedMetadata = () => {
+      // Seek to random position in the song (between 10% and 80% of duration)
+      const randomPosition = audio.duration * (0.1 + Math.random() * 0.7)
+      audio.currentTime = randomPosition
+      setCurrentTime(randomPosition)
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata)
+    }
+    
+    audio.addEventListener('loadedmetadata', onLoadedMetadata)
+    
     audio
       .play()
       .then(() => {
@@ -569,12 +579,14 @@ function App() {
   const nextWrappedPage = () => {
     if (wrappedPage < wrappedPages.length - 1) {
       setWrappedPage(wrappedPage + 1)
+      playRandomSong()
     }
   }
 
   const prevWrappedPage = () => {
     if (wrappedPage > 0) {
       setWrappedPage(wrappedPage - 1)
+      playRandomSong()
     }
   }
 
