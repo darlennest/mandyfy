@@ -135,6 +135,15 @@ function App() {
       duration: '2:45',
       cover: 'https://i.scdn.co/image/ab67616d0000b2733138f891f3075c9c5d944037',
       src: '/music/Hold Me Down.mp3'
+    },
+    {
+      id: 10,
+      title: 'everything u are',
+      artist: 'Hindia',
+      album: 'Doves, 25 on Blank Canvas',
+      duration: '3:56',
+      cover: 'https://images.genius.com/4f47be92df2b8f160b23e5ef066609b7.1000x1000x1.png',
+      src: '/music/Hindia - everything u are.mp3'
     }
   ]
 
@@ -1092,7 +1101,7 @@ function App() {
                       <div>
                         <p className="text-black/80 font-semibold text-sm mt-3">BIRTHDAY EDITION</p>
                         <h2 className="text-6xl font-black text-black tracking-tight leading-[0.92] mt-2">
-                          MANDY'S<br />WRAPPED
+                          BIRTHDAY<br />WISHES
                         </h2>
                         <p className="text-black/80 mt-4 font-medium">
                           Tap to view your moments
