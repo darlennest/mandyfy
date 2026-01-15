@@ -157,7 +157,7 @@ function App() {
     setIsPlaying(true)
 
     // Start playback immediately so it counts as user-initiated
-    audio.src = song.
+    audio.src = song.src
     audio.load()
     audio
       .play()
@@ -579,11 +579,10 @@ function App() {
               className="w-full h-12 px-4 bg-[#121212] border border-[#727272] rounded-[4px] text-white placeholder-[#a7a7a7] focus:outline-none focus:border-white transition-colors"
             />
             {loginError && (
-  <p className="text-red-500 text-sm mt-2 font-medium">
-    {loginError}
-  </p>
-          )}
-
+              <p className="text-red-500 text-sm mt-2 font-medium">
+                {loginError}
+              </p>
+            )}
           </div>
           <button
             onClick={handleContinue}
