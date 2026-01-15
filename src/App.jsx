@@ -6,6 +6,7 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState('login')
   const [currentView, setCurrentView] = useState('home')
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(1)
@@ -327,15 +328,28 @@ function App() {
 
 
   const handleContinue = async () => {
-    const trimmed = email.trim()
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
 
-    if (trimmed === '') {
-      setLoginError('Name cannot be empty')
+    if (trimmedEmail === '') {
+      setLoginError('Username cannot be empty')
       return
     }
 
-    if (trimmed.toLowerCase() !== 'mandy') {
+    if (trimmedPassword === '') {
+      setLoginError('Password cannot be empty')
+      return
+    }
+
+    // Check username contains MANDY (case insensitive)
+    if (!trimmedEmail.toUpperCase().includes('MANDY')) {
       setLoginError('Hayo ini siapa 👀')
+      return
+    }
+
+    // Check password is exactly MANDY1901
+    if (trimmedPassword !== 'MANDY1901') {
+      setLoginError('Password salah 🔒')
       return
     }
 
@@ -406,14 +420,15 @@ function App() {
     setCurrentView(playlist.type)
   }
 
-  // When wrappedPage changes while in Wrapped view, keep the same song playing
+  // When wrappedPage changes while in Wrapped view, play a new random song
   useEffect(() => {
-    if (currentView === 'wrapped' && !isPlaying) {
-      // Only start playing if nothing is playing yet
+    if (currentView === 'wrapped' && wrappedPage > 0) {
+      // Only change song on page changes (user action)
       playRandomSong()
     }
+    // we intentionally only watch wrappedPage
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentView])
+  }, [wrappedPage])
 
   // Restore previous playback when leaving Wrapped
   useEffect(() => {
@@ -578,12 +593,14 @@ function App() {
   const nextWrappedPage = () => {
     if (wrappedPage < wrappedPages.length - 1) {
       setWrappedPage(wrappedPage + 1)
+      playRandomSong()
     }
   }
 
   const prevWrappedPage = () => {
     if (wrappedPage > 0) {
       setWrappedPage(wrappedPage - 1)
+      playRandomSong()
     }
   }
 
@@ -598,12 +615,22 @@ function App() {
         </div>
         <h1 className="text-5xl font-bold text-white mb-10 text-center">Welcome back</h1>
         <div className="w-full max-w-[324px]">
-          <div className="mb-2">
-            <label className="block text-sm font-semibold text-white mb-2">Email or username</label>
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-white mb-2">Username</label>
             <input
               type="text"
               value={email}
               onChange={handleEmailChange}
+              className="w-full h-12 px-4 bg-[#121212] border border-[#727272] rounded-[4px] text-white placeholder-[#a7a7a7] focus:outline-none focus:border-white transition-colors"
+              placeholder="MANDY, KIH.MANDY, etc"
+            />
+          </div>
+          <div className="mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full h-12 px-4 bg-[#121212] border border-[#727272] rounded-[4px] text-white placeholder-[#a7a7a7] focus:outline-none focus:border-white transition-colors"
             />
             {loginError && (
@@ -943,29 +970,24 @@ function App() {
                 <p className="text-white font-medium text-xl">Dear Mandy,</p>
                 
                 <p>
-                  There are so many things I want to say to you, but words never seem to be enough. 
-                  From the moment you came into my life, everything changed for the better.
+                  happy birthday princess! moga tahun ini bisa jadi tahun yang lebih baik bagi u dari tahun" sebelumnya yaa. moga u selalu sehat, makin cantik, makin sukses, makin bisa banggain ortu, and always jadi mandy yang happy yaa.
                 </p>
                 
                 <p>
-                  You have this incredible way of making every ordinary moment feel special. 
-                  Your laugh is my favorite sound, your smile is my favorite sight, 
-                  and being with you is my favorite place to be.
+                  jujur i planning bikin website ini kayak seminggu yang lalu, and i really speedrun it biar bisa jadi surprise gitu hehe. i hope u like it! i made this to show how much i love u and appreciate u. setiap moment bareng u berharga banget buat i, and i cherish every single memory we made together.
                 </p>
                 
                 <p>
-                  Thank you for being patient with me, for understanding me in ways no one else does, 
-                  and for loving me even on my difficult days. You make me want to be a better person.
+                  tahun ini kurangin sedih"nya ya? hehe. i know hidup emang ga selalu mudah & sesuai ama keinginan kita. but jangan lupa kalo ada orang" yang sayang ama care ama u. jadi jangan lupa cerita ke mereka juga ya?
                 </p>
                 
                 <p>
-                  I hope this little surprise brings a smile to your face. 
-                  You deserve all the happiness in the world, and I want to spend every day trying to give you that.
+                  once again, happy birthday mandy! fly higher, i'll be your goddamn rocket 🤘
                 </p>
                 
                 <p className="text-white font-medium text-xl pt-4">
-                  With all my love,<br/>
-                  Always yours 💚
+                  the best,<br/>
+                  dar 🤍
                 </p>
               </div>
             </div>
