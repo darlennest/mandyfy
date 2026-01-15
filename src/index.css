@@ -36,3 +36,28 @@
 *::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+/* Responsive layout adjustments */
+@media (max-width: 1024px) {
+  /* Hide right panel on tablet/smaller screens */
+  .sidebar-large {
+    width: 240px;
+  }
+  
+  .right-panel-large {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tablet and below */
+  .sidebar-large {
+    width: 200px;
+  }
+  
+  .right-panel-large {
+    display: none;
+  }
+}
+
+

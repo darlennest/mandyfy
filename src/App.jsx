@@ -265,9 +265,12 @@ function App() {
       const rm = repeatModeRef.current
 
       if (rm === 'one') {
+        // Repeat the same song
         audio.currentTime = 0
         audio.play().catch(() => {})
+        setIsPlaying(true)
       } else if (rm === 'all') {
+        // Play all songs in loop
         if (shuffleNow) {
           const randomIndex = Math.floor(Math.random() * loveSongs.length)
           setCurrentTrack(randomIndex)
@@ -275,6 +278,7 @@ function App() {
           setCurrentTrack((prev) => (prev + 1) % loveSongs.length)
         }
       } else {
+        // Play until the end then stop
         if (currentTrackRef.current < loveSongs.length - 1) {
           if (shuffleNow) {
             const randomIndex = Math.floor(Math.random() * loveSongs.length)
@@ -1018,7 +1022,7 @@ function App() {
     <div className="h-screen bg-[#121212] flex flex-col overflow-hidden">
       <div className="flex flex-1 overflow-hidden">
         {/* SIDEBAR */}
-        <div className="w-[280px] bg-black flex flex-col p-2 gap-2 shrink-0">
+        <div className="hidden lg:flex w-[280px] bg-black flex flex-col p-2 gap-2 shrink-0">
           {/* Navigation */}
           <div className="bg-[#121212] rounded-lg p-4">
             <div className="flex items-center gap-4 px-3 py-2 text-white hover:text-white cursor-pointer transition-colors group">
@@ -1110,7 +1114,7 @@ function App() {
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-2xl font-bold text-white cursor-pointer">Made For You</h2>
                 </div>
-                <div className="grid grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {playlists.map((playlist) => (
                     <div
                       key={playlist.id}
@@ -1134,8 +1138,8 @@ function App() {
         </div>
 
         {/* RIGHT PANEL - NOW PLAYING */}
-        <div className="w-[320px] bg-[#121212] border-l border-[#282828] p-4 shrink-0 overflow-y-auto">
-        <div className="sticky top-0">
+        <div className="hidden lg:flex w-[320px] bg-[#121212] border-l border-[#282828] p-4 shrink-0 overflow-y-auto">
+        <div className="sticky top-0 w-full">
             <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-bold">Our Love Playlist</h3>
             </div>
@@ -1172,44 +1176,44 @@ function App() {
       </div>
 
       {/* BOTTOM PLAYER */}
-      <div className="h-[90px] bg-black border-t border-[#282828] px-4 flex items-center justify-between shrink-0">
+      <div className="h-auto md:h-[90px] bg-black border-t border-[#282828] px-2 md:px-4 py-2 md:py-0 flex flex-col md:flex-row items-center justify-between shrink-0 gap-2 md:gap-0">
         {/* Song Info */}
-        <div className="flex items-center gap-4 w-[30%] min-w-[180px]">
-          <img src={currentSong.cover} alt={currentSong.album} className="w-14 h-14 rounded object-cover" />
-          <div className="min-w-0">
-            <p className="text-white text-sm font-medium truncate hover:underline cursor-pointer">{currentSong.title}</p>
+        <div className="flex items-center gap-2 md:gap-4 w-full md:w-[30%] min-w-0 md:min-w-[180px]">
+          <img src={currentSong.cover} alt={currentSong.album} className="w-10 h-10 md:w-14 md:h-14 rounded object-cover shrink-0" />
+          <div className="min-w-0 flex-1">
+            <p className="text-white text-xs md:text-sm font-medium truncate hover:underline cursor-pointer">{currentSong.title}</p>
             <p className="text-[#b3b3b3] text-xs truncate hover:underline cursor-pointer">{currentSong.artist}</p>
           </div>
         </div>
 
         {/* Player Controls */}
-        <div className="flex flex-col items-center gap-2 w-[40%] max-w-[722px]">
-          <div className="flex items-center gap-6">
+        <div className="flex flex-col items-center gap-1 md:gap-2 w-full md:w-[40%] max-w-full md:max-w-[722px]">
+          <div className="flex items-center gap-3 md:gap-6">
             <button onClick={toggleShuffle} className="cursor-pointer">
-              <Shuffle className={`w-4 h-4 ${isShuffle ? 'text-[#1ed760]' : 'text-[#b3b3b3]'} hover:text-white transition-colors`} />
+              <Shuffle className={`w-3 md:w-4 h-3 md:h-4 ${isShuffle ? 'text-[#1ed760]' : 'text-[#b3b3b3]'} hover:text-white transition-colors`} />
             </button>
             <button onClick={prevTrack} className="cursor-pointer">
-              <SkipBack className="w-5 h-5 text-[#b3b3b3] hover:text-white fill-current transition-colors" />
+              <SkipBack className="w-4 md:w-5 h-4 md:h-5 text-[#b3b3b3] hover:text-white fill-current transition-colors" />
             </button>
             <button
               onClick={togglePlay}
-              className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+              className="w-7 h-7 md:w-8 md:h-8 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
             >
               {isPlaying ? (
-                <Pause className="w-4 h-4 text-black fill-black" />
+                <Pause className="w-3 md:w-4 h-3 md:h-4 text-black fill-black" />
               ) : (
-                <Play className="w-4 h-4 text-black fill-black ml-0.5" />
+                <Play className="w-3 md:w-4 h-3 md:h-4 text-black fill-black ml-0.5" />
               )}
             </button>
             <button onClick={nextTrack} className="cursor-pointer">
-              <SkipForward className="w-5 h-5 text-[#b3b3b3] hover:text-white fill-current transition-colors" />
+              <SkipForward className="w-4 md:w-5 h-4 md:h-5 text-[#b3b3b3] hover:text-white fill-current transition-colors" />
             </button>
             <button onClick={toggleRepeat} className="cursor-pointer">
-              <Repeat className={`w-4 h-4 ${repeatMode !== 'off' ? 'text-[#1ed760]' : 'text-[#b3b3b3]'} hover:text-white transition-colors`} />
+              <Repeat className={`w-3 md:w-4 h-3 md:h-4 ${repeatMode !== 'off' ? 'text-[#1ed760]' : 'text-[#b3b3b3]'} hover:text-white transition-colors`} />
             </button>
           </div>
           <div className="flex items-center gap-2 w-full">
-            <span className="text-[#b3b3b3] text-xs w-10 text-right">{formatTime(currentTime)}</span>
+            <span className="text-[#b3b3b3] text-xs w-8 md:w-10 text-right">{formatTime(currentTime)}</span>
             <div 
               className="flex-1 h-1 bg-[#4d4d4d] rounded-full group cursor-pointer relative"
               onClick={(e) => {
@@ -1230,23 +1234,23 @@ function App() {
                 <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
             </div>
-            <span className="text-[#b3b3b3] text-xs w-10">{formatTime(duration)}</span>
+            <span className="text-[#b3b3b3] text-xs w-8 md:w-10">{formatTime(duration)}</span>
           </div>
         </div>
 
         {/* Volume */}
-        <div className="flex items-center justify-end gap-3 w-[30%] min-w-[180px]">
+        <div className="hidden md:flex items-center justify-end gap-3 w-full md:w-[30%] min-w-0 md:min-w-[180px]">
           {(isMuted || volume === 0) ? (
-              <VolumeX onClick={toggleMute} className="w-4 h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
+              <VolumeX onClick={toggleMute} className="w-3 md:w-4 h-3 md:h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
             ) : volume < 0.33 ? (
-              <Volume onClick={toggleMute} className="w-4 h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
+              <Volume onClick={toggleMute} className="w-3 md:w-4 h-3 md:h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
             ) : volume < 0.66 ? (
-              <Volume1 onClick={toggleMute} className="w-4 h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
+              <Volume1 onClick={toggleMute} className="w-3 md:w-4 h-3 md:h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
             ) : (
-              <Volume2 onClick={toggleMute} className="w-4 h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
+              <Volume2 onClick={toggleMute} className="w-3 md:w-4 h-3 md:h-4 text-[#b3b3b3] hover:text-white cursor-pointer transition-colors" />
             )}
           <div
-            className="w-24 h-1.5 bg-[#2f2f2f] rounded-full cursor-pointer relative overflow-hidden"
+            className="w-20 md:w-24 h-1.5 bg-[#2f2f2f] rounded-full cursor-pointer relative overflow-hidden"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect()
               const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
