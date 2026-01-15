@@ -667,7 +667,7 @@ function App() {
           </button>
           <div className="h-8"></div>
           <div className="flex flex-col items-center gap-4">
-            <p className="text-[#a7a7a7]">Don't have an account?</p>
+            <p className="text-[#a7a7a7]">Don't forget your account or password?</p>
                     <button
           onClick={() => window.open('https://wa.me/6281210755219', '_blank')}
           className="text-white font-semibold underline hover:text-[#1ed760] transition-colors"
