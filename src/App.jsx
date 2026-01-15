@@ -437,15 +437,14 @@ function App() {
     setCurrentView(playlist.type)
   }
 
-  // When wrappedPage changes while in Wrapped view, play a new random song
+  // When wrappedPage changes while in Wrapped view, keep the same song playing
   useEffect(() => {
-    if (currentView === 'wrapped' && wrappedPage > 0) {
-      // Only change song on page changes (user action)
+    if (currentView === 'wrapped' && !isPlaying) {
+      // Only start playing if nothing is playing yet
       playRandomSong()
     }
-    // we intentionally only watch wrappedPage
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wrappedPage])
+  }, [currentView])
 
   // Restore previous playback when leaving Wrapped
   useEffect(() => {
