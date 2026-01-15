@@ -385,6 +385,12 @@ function App() {
 
       setWrappedPage(0)
       setCurrentView(playlist.type)
+      // Start playing a random song when entering wrapped
+      setTimeout(() => {
+        if (!isPlaying) {
+          playRandomSong()
+        }
+      }, 0)
       return
     }
     setCurrentView(playlist.type)
@@ -392,7 +398,7 @@ function App() {
 
   // When wrappedPage changes while in Wrapped view, play a new random song
   useEffect(() => {
-    if (currentView === 'wrapped') {
+    if (currentView === 'wrapped' && wrappedPage > 0) {
       // Only change song on page changes (user action)
       playRandomSong()
     }
