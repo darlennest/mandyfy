@@ -1004,6 +1004,10 @@ function App() {
                 <p>
                   jujur i planning bikin website ini kayak seminggu yang lalu, and i really speedrun it biar bisa jadi surprise gitu hehe. i hope u like it! i made this to show how much i love u and appreciate u. setiap moment bareng u berharga banget buat i, and i cherish every single memory we made together.
                 </p>
+
+                <p>
+                  so i hope after this u can stop doubting me ya, about whether i really like u or not. i just want u to know that i love u so much. and kalo u nanya, "apa buktinya?” maybe kalo cmn ngomong doang uda biasa kali ya, that’s why i choose to show it through my actions. and i wanna show u why choosing me is the right decision for u.
+                </p>
                 
                 <p>
                   i wanna say sorry kalo selama kita kenal i pernah bikin u sedih, kesel, marah ato semacamnya. asal u tau if i never mean to hurt u. i always try my best to be a better person for u, and i hope u can forgive me for my mistakes. thank u for being so patient and understanding sama i.
