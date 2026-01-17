@@ -214,19 +214,18 @@ function App() {
   useEffect(() => { repeatModeRef.current = repeatMode }, [repeatMode])
 
   const wrappedPages = [
-    { id: 0, title: 'Happy sweet seventeen!', subtitle: 'Hello, Mandy', bg: 'from-[#1ed760] via-[#1db954] to-[#169c46]' },
-    { id: 1, title: 'Semoga tahun ini', subtitle: 'semakin bisa lebih better', bg: 'from-[#e91e63] via-[#9c27b0] to-[#673ab7]' },
-    { id: 2, title: 'Every moment we shared', subtitle: 'became a memory I hold close to my heart', bg: 'from-[#ff6b6b] via-[#ee5a24] to-[#f39c12]' },
-    { id: 3, title: 'You make ordinary days', subtitle: 'feel like the greatest adventures', bg: 'from-[#00bcd4] via-[#3f51b5] to-[#9c27b0]' },
-    { id: 4, title: 'Thank you for being you', subtitle: 'for your kindness, your laugh, your everything', bg: 'from-[#8e44ad] via-[#3498db] to-[#1abc9c]' },
-    { id: 5, title: 'Heres to more memories', subtitle: 'more laughter, more us. Happy birthday, my love.', bg: 'from-[#1ed760] via-[#ff6b6b] to-[#ffd93d]' }
+    { id: 0, title: 'hello, mandy', subtitle: 'happy sweet seventeen!', bg: 'from-[#1ed760] via-[#1db954] to-[#169c46]' },
+    { id: 1, title: 'i hope this year', subtitle: 'is better for u in every way', bg: 'from-[#e91e63] via-[#9c27b0] to-[#673ab7]' },
+    { id: 2, title: 'thank you for being you', subtitle: 'for your kindness, your laugh, your everything', bg: 'from-[#ff6b6b] via-[#ee5a24] to-[#f39c12]' },
+    { id: 3, title: 'also, thank you for being my girlfriend', subtitle: 'you make everything feel lighter', bg: 'from-[#00bcd4] via-[#3f51b5] to-[#9c27b0]' },
+    { id: 4, title: 'fly higher', subtitle: 'iʼll be your goddamn rocket', bg: 'from-[#8e44ad] via-[#3498db] to-[#1abc9c]' },
   ]
 
   const playlists = [
     { id: 1, name: 'Memories', description: 'Our pictures together', cover: 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c22eb6f647adc1a07b4cc3838', type: 'memories' },
     { id: 2, name: 'Our Love Playlist', description: 'Songs that remind me of you', cover: 'https://i.imgur.com/w5eP1QP.jpeg', type: 'songs' },
     { id: 3, name: 'Message', description: 'From me to you', cover: 'https://i.imgur.com/3fzYD90.png', type: 'message' },
-    { id: 4, name: 'Wrapped', description: 'Your Wrapped', cover: 'https://i.imgur.com/8PbONU7.png', type: 'wrapped' }
+    { id: 4, name: 'Birthday Wishes', description: 'For you', cover: 'https://i.imgur.com/8PbONU7.png', type: 'wrapped' }
   ]
 
   const [selectedPlaylist, setSelectedPlaylist] = useState(playlists[0])
